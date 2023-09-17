@@ -1,7 +1,7 @@
 Este projeto foi desenvolvido para finalização do curso de Programação em Python (300h).
 
 A proposta era a seguinte:
-"DESENVOLVIMENTO
+"DESENVOLVIMENTO - 
 É proposto que criemos uma aplicação web, em Python, para uma empresa de equipamentos  informáticos, esta aplicação deve cumprir os seguintes requisitos:
 1.	Pedem-nos para que a aplicação no permita gerir todos os seus produtos e as respetivas quantidades em armazém, de forma a que, quando o stock estiver apenas com 10%, nos avise, para que o possamos solicitar ao fornecedor. 
 2.	Na aplicação web terá três tipos de acesso, um para clientes e outro para fornecedores., e por ultimo, um utilizador administrador, que deve ter acesso a todas as páginas. 
