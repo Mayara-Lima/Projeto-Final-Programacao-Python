@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/logo2.png" type="image/png">
+    <title>Miranda Eletronicos - Área do Cliente</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Apply background gradient */
+        body {
+            background: linear-gradient(to bottom, #4d9e59, #276c3a);
+            margin: 0;
+            padding-top: 50px; /* To make space for the top navbar */
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px; /* Add padding around the content */
+            color: #fff; /* Text color */
+            transition: background-color 0.3s; /* Smooth transition */
+            z-index: 1000; /* Ensure the navbar is on top of other elements */
+            background-color: black;
+        }
+
+        .navbar.transparent {
+            background-color: rgba(58, 119, 87, 0.9); /* Change to desired transparent color */
+        }
+
+        .navbar-title {
+        font-size: 24px;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        max-width: 80%; /* Define um limite máximo de largura */
+    }
+
+        .content {
+            margin-top: -50px; /* Adicione uma margem negativa */
+            padding-top: 110px; /* Ajuste o padding-top para compensar a margem negativa */
+            text-align: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            height: 40px; /* Adjust the height as needed */
+        }
+
+      
+
+        .navbar-logo {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.section-title {
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: #64e37d; /* Cor da linha */
+        }
+
+        .produto-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .produto-item {
+            flex: 0 0 calc(33.33% - 160px);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .produto-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    }
+
+    .produto-img {
+    max-width: 120%; /* Isso faz com que a imagem não exceda a largura do contêiner pai */
+    max-height: 310px; /* Defina a altura máxima que você deseja para as imagens */
+    width: auto; /* Isso permite que a imagem mantenha sua proporção original */
+}
+
+    .produto-tooltip {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 8px;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .produto-item:hover .produto-tooltip {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .fazer-pedido {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 30px auto; /* Margens automáticas para centralização horizontal */
+    max-width: 300px; /* Largura reduzida */
+}
+
+.flashes {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.flash-message {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flash-success {
+    background-color: #c3e6cb;
+    color: #155724;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash-close-btn {
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    color: #721c24;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+  <div class="navbar">
+    <ul class="mr-auto">
+        <li>
+          <h1 class="navbar-title">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo da Miranda Eletrônicos" class="navbar-logo">   
+        </h1>
+        </li>
+    </ul>
+    <form class="carrinho-superior" action="{{ url_for('carrinho', id_usuario=id_usuario) }}" method="post">
+      <button class="btn btn-outline-success" type="submit">
+          <i class="fas fa-shopping-cart"></i> Carrinho
+      </button>
+    </form>
+
+    <ul>
+        <li>
+          <a href="/sair" class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+        </li>
+    </ul>
+</div>
+
+
+
+    
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-title mb-4">Nossos Produtos</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Parte com as fotos dos produtos -->
+        <div class="col-md-8">
+            <div class="row produto-list">
+                {% for produto in consulta_produtos %}
+                <div class="col-md-4 mb-4">
+                    <div class="produto-item">
+                        <img src="{{ url_for('static', filename='img_produtos/' + produto.imagem) }}"
+                            alt="{{ produto.nome_produto }}" class="produto-img">
+                        <div class="produto-tooltip">
+                            <strong>{{ produto.nome_produto }}</strong><br>
+                            {{ produto.descricao_produto }} <br>
+                            {{ produto.preco_iva }} €
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="detalhes-produto" style="display: none;">
+                <p id="descricao_produto"></p>
+                <p id="preco_iva"></p>
+            </div>
+        </div>
+        
+        <!-- Parte com o formulário para escolher o pedido e a quantidade -->
+        <div class="col-md-4">
+            <fieldset class="fazer-pedido">
+                <form action="{{ url_for('adicionar_produto', id_usuario=id_usuario) }}" method="post">
+                    <div class="form-group">
+                        <label for="nivel"><strong>Escolha o produto</strong></label>
+                        <select id="nivel" name="nome_produto" class="form-control" required>
+                            <option selected disabled value="">Selecione</option>
+                            {% for produto in consulta_produtos %}
+                            <option>{{ produto.nome_produto }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Escolha a quantidade</strong></label>
+                        <input type="number" id="quantidade" name="quantidade" class="form-control" min="1"
+                            value="1" required>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Adicionar ao Carrinho
+                    </button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        function mostrarDetalhes(descricao, preco) {
+            document.getElementById('descricao_produto').innerHTML = descricao;
+            document.getElementById('preco_iva').innerHTML = preco + ' €';
+            document.getElementById('detalhes-produto').style.display = 'block';
+        }
+    </script>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+

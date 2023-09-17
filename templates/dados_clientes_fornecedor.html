@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/logo2.png" type="image/png">
+    <title>Miranda Eletronicos - Dados Fornecedor e Clientes</title>
+   
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Inclua as bibliotecas CSS e JS do Bootstrap e FontAwesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Apply background gradient */
+        body {
+            background: linear-gradient(to bottom, #4d9e59, #276c3a);
+            margin: 0;
+            padding-top: 50px; /* To make space for the top navbar */
+            min-height: 100vh;
+        }
+  
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px; /* Add padding around the content */
+            color: #fff; /* Text color */
+            transition: background-color 0.3s; /* Smooth transition */
+            z-index: 1000; /* Ensure the navbar is on top of other elements */
+            background-color: black;
+        }
+  
+        .navbar.transparent {
+            background-color: rgba(58, 119, 87, 0.9); /* Change to desired transparent color */
+        }
+  
+        .navbar-title {
+        font-size: 24px;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        max-width: 80%; /* Define um limite máximo de largura */
+        }
+  
+        .content {
+            margin-top: -50px; /* Adicione uma margem negativa */
+            padding-top: 110px; /* Ajuste o padding-top para compensar a margem negativa */
+            text-align: center;
+        }
+  
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            height: 40px; /* Adjust the height as needed */
+        }
+  
+        .navbar ul li a {
+            text-decoration: none;
+            color: #e70808;
+        }
+  
+        .navbar-logo {
+        height: 100%; /* Altura igual à altura da navbar */
+        width: auto; /* Largura automática para manter a proporção */
+        margin: 0; /* Margens removidas */
+        }
+
+  
+      .card-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+          margin-top: 50px; /* Adicionei o margin-top aqui para manter a distância da nav */
+      }
+  
+      .col-md-4 {
+          flex: 0 0 calc(33.33% - 20px); /* Definição para ocupar 1/3 do espaço e deixar espaço entre os cards */
+      }
+      
+    </style>
+
+<body>
+    <div class="navbar">
+        <ul class="mr-auto">
+            <li>
+                <h1 class="navbar-title">
+                  <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo da Miranda Eletrônicos" class="navbar-logo">   
+              </h1>
+              </li>
+        </ul>
+        <ul>
+            <li class="mx-2">
+                <a href="{{ url_for('voltar_administrador') }}" class="btn btn-outline-secondary ">
+                    <i class="fas fa-arrow-left text-white"></i> <span class="text-white">Voltar</span>
+                </a>
+            </li>
+            <li class="mx-2">
+                <a href='/sair_adm' class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>    
+    </div>
+    
+<div class="row mt-4">
+    <div class="col-md-4 mt-3 mx-auto">
+        <div class="card border-warning mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Dados gerais do fornecedor:</h3>
+                <ul class="list-unstyled">
+                    <li><strong>Nome:</strong> {{ dados_fornecedor.nome }}</li>
+                    <li><strong>NIF:</strong> {{ dados_fornecedor.nif }}</li>
+                    <li><strong>Contacto:</strong> {{ dados_fornecedor.contacto }}</li>
+                    <li><strong>Morada:</strong> {{ dados_fornecedor.morada }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-3 mx-auto">
+        <div class="card border-warning mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Dados gerais dos clientes ativos:</h3>
+                <ul class="list-unstyled">
+                    {% for cliente in dados_clientes %}
+                    <li><strong>ID:</strong> {{ cliente.id }}. <strong>Nome:</strong> {{ cliente.nome }}</li>
+                    <li><strong>NIF:</strong> {{ cliente.nif }}</li>
+                    <li><strong>Contacto:</strong> {{ cliente.contacto }}</li>
+                    <li><strong>Morada:</strong> {{ cliente.morada }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

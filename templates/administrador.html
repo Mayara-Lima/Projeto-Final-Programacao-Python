@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/logo2.png" type="image/png">
+    <title>Miranda Eletronicos - Área do Administrador</title>
+
+    <!-- Inclua as bibliotecas CSS e JS do Bootstrap e FontAwesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #4d9e59, #276c3a);
+            margin: 0;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: #fff;
+            transition: background-color 0.3s;
+            z-index: 1000;
+            background-color: black;
+        }
+
+        .navbar.transparent {
+            background-color: rgba(58, 119, 87, 0.9);
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            margin: 0;
+            text-align: center;
+            white-space: nowrap;
+            max-width: 80%;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            height: 40px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #e70808;
+        }
+
+        .navbar-logo {
+            height: 100%;
+            width: auto;
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            color: #28a745;
+            border: 1px solid #28a745;
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            color: #218838;
+            border-color: #218838;
+        }
+
+        .btn-custom {
+            border-radius: 8px;
+        }
+
+        .alert-warning {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .blink-once {
+            animation: blink 1s 1;
+        }
+
+        .col-md-4 {
+            flex: 0 0 calc(33.33% - 20px);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0px 5px 15px rgba(118, 146, 116, 0.2);
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    
+</head>
+
+<body>
+        <!-- Barra de navegação com botão de menu -->
+        <div class="navbar d-flex justify-content-between align-items-center mb-4">
+            <div class="grafico-dropdown pr-3">
+                <div class="dropdown">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ url_for('grafico_compras', id_usuario=id_usuario) }}"><i class="fas fa-chart-line"></i> Gráficos de Custo</a>
+                        <a class="dropdown-item" href="{{ url_for('grafico_vendas', id_usuario=id_usuario) }}"><i class="fas fa-chart-bar"></i> Gráficos de Vendas</a>
+                        <a class="dropdown-item" href="{{ url_for('grafico_lucro', id_usuario=id_usuario) }}"><i class="fas fa-chart-pie"></i> Gráficos de Lucros</a>
+                        <a class="dropdown-item" href="{{ url_for('dados_clientes_fornecedor', id_usuario=id_usuario) }}"><i class="fas fa-users"></i> Dados Clientes e Fornecedor</a>
+                        <a class="dropdown-item" href="{{ url_for('acessar_pag_cliente', id_usuario=4) }}"><i class="fas fa-user"></i> Página do Cliente</a>
+                        <a class="dropdown-item" href="{{ url_for('acessar_pag_fornecedor', id_usuario=id_usuario) }}"><i class="fas fa-users"></i> Página do Fornecedor</a>
+                        <a class="dropdown-item" href="/sair_adm"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-title">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo da Miranda Eletrônicos" class="navbar-logo">
+            </div>
+            <form class="carrinho-superior" action="{{ url_for('carrinho_adm', id_usuario=id_usuario) }}" method="post">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Mensagens de erro ou sucesso -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
+            {% for category, message in messages %}
+                {% if category == 'warning' %}
+                <div class="flash-message flash-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="flash-close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+        
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <!-- Carrossel de cartões com os produtos e suas informações -->
+              <div id="carouselProdutos" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                      {% for prod in consulta_produtos %}
+                      <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                          <div class="card-custom">
+                              <div class="card-body text-center">
+                                  <h5 class="card-title">{{ prod.nome_produto }}</h5>
+                                  <p class="card-text">{{ prod.descricao_produto }}</p>
+                                  <p class="card-text">Preço para o cliente: {{ prod.preco_iva }}</p>
+                                  <p class="card-text">Preço de compra: {{ prod.preco_compra }}</p>
+                                  <p class="card-text">Fornecedor: {{ prod.id_fornecedor }}</p>
+                                  <p class="card-text">Quantidade em estoque: {{ prod.qtd_stock }}</p>
+                                  <p class="card-text">Lugar no Armazém: {{ prod.lugar_armazem }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselProdutos" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon">
+                          <i class="fas fa-chevron-left text-dark"></i>
+                      </span>
+                      <span class="sr-only">Anterior</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselProdutos" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon">
+                          <i class="fas fa-chevron-right text-dark"></i>
+                      </span>
+                      <span class="sr-only">Próximo</span>
+                  </a>
+              </div>
+          </div>
+          
+          <div class="col-md-6">
+              <!-- Lista de produtos com baixo estoque -->
+              <div class="card border-warning mb-4 blink-once">
+                  <div class="card-header bg-warning">
+                      <strong>ATENÇÃO!</strong> Os produtos abaixo estão com menos de 20% no estoque.
+                  </div>
+                  <div class="card-body">
+                      <ul class="list-unstyled">
+                          {% for produto in lista_baixo_stock %}
+                          <li class="mb-3">Produto: {{ produto['nome_produto'] }} <br>Quantidade em estoque: {{ produto['qtd_stock'] }} und</li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Formulário para adicionar o produto ao carrinho -->
+          <div class="col-md-4 mx-auto mt-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-center font-weight-bold" style="border-bottom: 2px solid #ccc; padding-bottom: 10px;">Repor Estoque</h4>
+                <form action="{{ url_for('adicionar_produto_adm', id_usuario=id_usuario) }}" method="post">
+                  <div class="form-group">
+                    <label for="nivel">Escolha o Produto</label>
+                    <select id="nivel" name="nome_produto" class="form-control" required>
+                      <option selected disabled value="">Selecione um Produto</option>
+                      {% for produto in consulta_produtos %}
+                      <option>{{ produto.nome_produto }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" id="quantidade" name="quantidade" class="form-control" min="1" value="1" required>
+                  </div>
+                  <button class="btn btn-primary btn-block" type="submit">Adicionar ao Carrinho</button>
+                </form>
+              </div>
+            </div>
+          </div>
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="/static/logo2.png" type="image/png">
+    <title>Gráficos de compras</title>
+</head>
+<body>
+  
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='img_graficos/grafico_compras.png') }}" alt="Compras">
+    </div>
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #4d9e59, #276c3a);
+            margin: 0;
+            padding-top: 50px; /* To make space for the top navbar */
+            min-height: 100vh;
+        }
+    
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 95vh; /* Ocupar a altura total da viewport */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px; /* Add padding around the content */
+            color: #fff; /* Text color */
+            transition: background-color 0.3s; /* Smooth transition */
+            z-index: 1000; /* Ensure the navbar is on top of other elements */
+            background-color: black;
+        }
+    
+        .navbar.transparent {
+            background-color: rgba(58, 119, 87, 0.9); /* Change to desired transparent color */
+        }
+    
+        .navbar-title {
+            font-size: 24px;
+            margin: 0;
+            text-align: center;
+            white-space: nowrap; /* Impede quebra de linha */
+            max-width: 80%; /* Define um limite máximo de largura */
+        }
+    
+        .content {
+            margin-top: -50px; /* Adicione uma margem negativa */
+            padding-top: 110px; /* Ajuste o padding-top para compensar a margem negativa */
+            text-align: center;
+        }
+    
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            height: 40px; /* Adjust the height as needed */
+        }
+    
+        .navbar ul li a {
+            text-decoration: none;
+            color: #e70808;
+        }
+    
+        .section-title {
+            font-size: 28px;
+            color: black;
+            text-align: center;
+            margin-top: 40px; /* Aumente a distância superior */
+            margin-bottom: 20px; /* Espaçamento inferior */
+            text-shadow: 2px 2px 4px rgba(20, 20, 20, 0.5); /* Adicione uma sombra */
+        }
+    
+        .list-group {
+            margin: 20px 0;
+        }
+    
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .list-group-item.active {
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+    
+        .list-group-item a.btn {
+            margin-left: 10px;
+        }
+    
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+    
+        .centered-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    
+        .container {
+            text-align: center;
+        }
+    
+        .block-element {
+            display: inline-block;
+            margin: 0 auto;
+        }
+    
+        .section-title {
+            margin-bottom: 20px;
+        }
+    
+       
+    </style>
+    <body>
+        <div class="navbar">
+            <ul class="mr-auto">
+                <li>
+                    <h1 class="navbar-title">
+                      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo da Miranda Eletrônicos" class="navbar-logo">   
+                  </h1>
+                  </li>
+            </ul>
+            <ul>
+                <li class="mx-2">
+                    <a href="{{ url_for('voltar_administrador') }}" class="btn btn-outline-secondary ">
+                        <i class="fas fa-arrow-left text-white"></i> <span class="text-white">Voltar</span>
+                    </a>
+                </li>
+                <li class="mx-2">
+                    <a href='/sair_adm' class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>    
+        </div>
+</body>
+
+</html>
