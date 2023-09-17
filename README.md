@@ -14,17 +14,29 @@ A proposta era a seguinte:
 O stack tecnológico utilizado foi: 
 
 •	Visual Studio Code, o IDE.
+
 •	Python 3, nossa linguagem de programação base. 
+
 •	HTML e CSS como linguagens de apoio para o desenvolvimento web e um front-end básico.
+
 •	Flask, framework web para Python. 
+
 •	SQLite, como base de dados SQL.
+
 •	Datetime, módulo de Python para manipulação de data e hora.
+
 •	lask SQLAlchemy, um módulo de Python, o qual faz de Aplicação ORM trabalhar com a base de dados SQLite.
+
 •	Matplotlib, biblioteca de Python que permitiu a plotagem dos gráficos.
+
 •	uiGrandients, gerador de fundo com degradado nas páginas.
+
 •	Animate, livraria de CSS para compor animações por meio de HTML.
+
 •	Jinja. Motor de renderizado de páginas web.
+
 •	Virtualenv, ambiente virtual de Python.
+
 
 É importante destacar que o projeto teve foco primário no desenvolvimento do backend, proporcionando uma aplicação capaz de conectar administradores, clientes e fornecedores, cada um com funções específicas. Nas capturas de tela abaixo, apresento as páginas de Login e Cliente:
 
