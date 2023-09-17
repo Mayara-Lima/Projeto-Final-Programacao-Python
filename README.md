@@ -17,7 +17,7 @@ O stack tecnológico utilizado foi:
 
 •	Python 3, nossa linguagem de programação base. 
 
-•	HTML e CSS como linguagens de apoio para o desenvolvimento web e um front-end básico.
+•	HTML, CSS e JavaScript como linguagens de apoio para o desenvolvimento web e um front-end básico.
 
 •	Flask, framework web para Python. 
 
